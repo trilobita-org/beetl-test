@@ -1,0 +1,69 @@
+group 'ltd.test'
+version '1.0-SNAPSHOT'
+
+
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.10.RELEASE'
+        springCloudVersion = 'Dalston.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+
+
+
+
+
+
+
+project("test") {
+    description "test"
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'maven'
+
+    ext.springCloudVersion          = 'Dalston.RELEASE'
+    ext.springBootVersion           = '1.5.10.RELEASE'
+    ext.fastjsonVersion             = "1.2.28"
+    repositories {
+        mavenLocal()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        mavenCentral()
+    }
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+    dependencies {
+        compile("com.ibeetl:beetl:2.8.1")
+        compile("org.springframework.boot:spring-boot-starter-web")
+        compile("org.springframework.boot:spring-boot-devtools")
+        compile  group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    }
+
+}
+configure(rootProject) {
+    description "beetl-test"
+//    configurations.archives.artifacts.clear()
+
+    dependencies {
+
+    }
+}

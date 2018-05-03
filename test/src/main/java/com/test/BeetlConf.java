@@ -1,5 +1,6 @@
 package com.test;
 
+import org.beetl.core.resource.ClasspathResourceLoader;
 import org.beetl.core.resource.FileResourceLoader;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
@@ -24,7 +25,7 @@ public class BeetlConf {
             loader = BeetlConf.class.getClassLoader();
         }
         //beetlGroupUtilConfiguration.setConfigProperties(extProperties);//额外的配置，可以覆盖默认配置，一般不需要
-        FileResourceLoader cploder = new FileResourceLoader(
+        ClasspathResourceLoader cploder = new ClasspathResourceLoader(
                 templatesPath);
         beetlGroupUtilConfiguration.setResourceLoader(cploder);
         beetlGroupUtilConfiguration.init();

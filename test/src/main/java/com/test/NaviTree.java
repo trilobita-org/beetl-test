@@ -16,10 +16,14 @@ public class NaviTree extends GeneralVarTagBinding {
     @Override
     public void render() {
 
+        //这里的内容为空，不支持注入的方式
+        System.out.println(restTemplate);
 
         LinkedHashMap<String,Integer> linkedHashMap=new LinkedHashMap();
-        linkedHashMap.put(getAttributeValue("v").toString(),0);
-
+        linkedHashMap.put("a1",0);
+        linkedHashMap.put("a2",1);
+        this.mapName2Index(linkedHashMap);
+        this.binds("a1","a2");
         this.doBodyRender();
 
     }
